@@ -1,0 +1,34 @@
+name: RFC 💬
+description: Request for comments for your proposal.
+title: '[RFC] '
+labels: ['status: waiting for maintainer', 'RFC']
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for contributing by creating an RFC! ❤️.
+  - type: textarea
+    attributes:
+      label: ❓ What's the problem?
+      description: Write a short paragraph or bulleted list to briefly explain what you're trying to do, what outcomes you're aiming for.
+  - type: textarea
+    attributes:
+      label: ✅ What are the requirements?
+      description: Provide a list of requirements that should be met by the accepted proposal.
+  - type: textarea
+    attributes:
+      label: 🔄 What are our options?
+      description: What are the alternative options to achieve the desired outcome?
+  - type: textarea
+    attributes:
+      label: 💡 Proposed solution
+      description: |
+        This is the core of the RFC. Please clearly explain the reasoning behind your proposed solution, including why it would be preferred over possible alternatives.
+
+        Consider:
+        - using diagrams to help illustrate your ideas
+        - including code examples if you're proposing an interface or system contract
+        - linking to relevant project briefs or wireframes
+  - type: textarea
+    attributes:
+      label: 📚 Resources and benchmarks
+      description: Attach any issues, PRs, links, documents, etc… that might be relevant to the RFC.

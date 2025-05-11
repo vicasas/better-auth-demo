@@ -1,0 +1,60 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.fixAll.eslint": "explicit"
+  },
+  "todo-tree.general.tags": [
+    "BUG", // Bug in the code.
+    "HACK", // Temporary solution.
+    "FIXME", // Code that needs fixing.
+    "TODO", // Pending tasks.
+    "NOTE", // Temporary notes.
+    "XXX", // Critical or risky points.
+    "[ ]", // Tasks to be done.
+    "[X]" // Completed tasks.
+  ],
+  "todo-tree.highlights.customHighlight": {
+    "BUG": {
+      "icon": "bug",
+      "background": "#3c0000",
+      "foreground": "#ff4d4d"
+    },
+    "HACK": {
+      "icon": "tools",
+      "background": "#4f2f00",
+      "foreground": "#ffb84d"
+    },
+    "FIXME": {
+      "icon": "flame",
+      "background": "#661900",
+      "foreground": "#ff6600"
+    },
+    "TODO": {
+      "icon": "check",
+      "background": "#004d00",
+      "foreground": "#66ff66"
+    },
+    "NOTE": {
+      "icon": "comment",
+      "background": "#665500",
+      "foreground": "#ffff66"
+    },
+    "XXX": {
+      "icon": "x",
+      "background": "#3b0050",
+      "foreground": "#d9a3ff"
+    },
+    "[ ]": {
+      "icon": "issue-draft",
+      "background": "#005555",
+      "foreground": "#33cccc"
+    },
+    "[X]": {
+      "icon": "issue-closed",
+      "background": "#2a2a2a",
+      "foreground": "#b3b3b3"
+    }
+  }
+}

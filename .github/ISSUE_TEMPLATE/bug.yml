@@ -1,0 +1,53 @@
+name: Bug report 🐛
+description: Create a bug report for Better Auth Demo.
+labels: ['waiting for maintainer']
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for contributing by creating an issue! ❤️.
+  - type: checkboxes
+    attributes:
+      label: Latest version
+      description: We roll bug fixes, performance enhancements, and other improvements into new releases.
+      options:
+        - label: I have tested the latest version
+          required: true
+  - type: textarea
+    attributes:
+      label: 🕹 Steps to reproduce
+      description: |
+        **⚠️ Issues that we can't reproduce can't be fixed.**
+
+        Please provide a link to a live example and an unambiguous set of steps to reproduce this bug.
+      value: |
+        Link to live example: (required)
+
+        Steps:
+        1.
+        2.
+        3.
+  - type: textarea
+    attributes:
+      label: 😯 Current behavior
+      description: Describe what happens instead of the expected behavior.
+  - type: textarea
+    attributes:
+      label: 🤔 Expected behavior
+      description: Describe what should happen.
+  - type: textarea
+    attributes:
+      label: 🔦 Context
+      description: What are you trying to accomplish? Providing context helps us come up with a solution that is more useful in the real world.
+  - type: textarea
+    attributes:
+      label: 🌎 Your environment
+      description: Run `npx next info` and post the results. If you encounter issues with TypeScript please include the used tsconfig.
+      value: |
+        <details>
+          <summary><code>npx next info</code></summary>
+
+        ```plaintext
+        Don't forget to mention which browser you used.
+        Output from `npx next info` goes here.
+        ```
+        </details>

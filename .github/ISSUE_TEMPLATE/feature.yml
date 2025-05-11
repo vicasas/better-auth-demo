@@ -1,0 +1,26 @@
+name: Feature request 💄
+description: Suggest a new idea for Better Auth Demo.
+labels: ['waiting for maintainer']
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for contributing by creating an issue! ❤️.
+  - type: checkboxes
+    attributes:
+      label: Latest version
+      description: We roll bug fixes, performance enhancements, and other improvements into new releases.
+      options:
+        - label: I have tested the latest version
+          required: true
+  - type: textarea
+    attributes:
+      label: 💡 Description
+      description: Describe how it should work.
+  - type: textarea
+    attributes:
+      label: 🛠️ Proposed solution
+      description: Describe a possible solution or approach to implement the feature.
+  - type: textarea
+    attributes:
+      label: 🌟 Motivation
+      description: What are you trying to accomplish? Providing context helps us come up with a solution that is more useful in the real world.
