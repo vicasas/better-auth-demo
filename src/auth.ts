@@ -9,4 +9,9 @@ export const auth = betterAuth({
   appName: 'Better Auth Demo',
   database: mongodbAdapter(db),
   emailAndPassword: { enabled: true },
+  user: {
+    additionalFields: {
+      extraEmailsOptIn: { type: 'boolean', required: false, default: false },
+    },
+  },
 })

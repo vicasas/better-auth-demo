@@ -1,9 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import {
+  Alert,
   Box,
   Button,
   Checkbox,
@@ -13,6 +15,7 @@ import {
   InputAdornment,
   TextField,
 } from '@mui/material'
+import { authClient } from '@/authclient'
 import UploadAvatar from '@/components/UploadAvatar'
 
 function convertImageToBase64(file: File): Promise<string> {
@@ -32,7 +35,9 @@ function convertImageToBase64(file: File): Promise<string> {
 export default function SignUpForm() {
   const [showPassword, setShowPassword] = useState(false)
   const [profileImage, setProfileImage] = useState<File | null>(null)
-  const [loading] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
 
   const handleClickShowPassword = () => {
     setShowPassword((show) => !show)
@@ -43,11 +48,33 @@ export default function SignUpForm() {
     const formData = new FormData(event.currentTarget)
     const jsonData = Object.fromEntries(formData.entries())
 
-    console.log({
-      ...jsonData,
-      profileImage: profileImage
-        ? await convertImageToBase64(profileImage)
-        : '',
+    const { firstName, lastName, email, password, allowExtraEmails } =
+      jsonData as {
+        firstName: string
+        lastName: string
+        email: string
+        password: string
+        allowExtraEmails?: 'on'
+      }
+
+    const extraEmailsOptIn = allowExtraEmails === 'on'
+
+    await authClient.signUp.email({
+      email,
+      password,
+      name: `${firstName} ${lastName}`,
+      image: profileImage ? await convertImageToBase64(profileImage) : '',
+      extraEmailsOptIn,
+      // BUG: The `callbackURL` is not working
+      callbackURL: '/dashboard',
+      fetchOptions: {
+        onRequest: () => setLoading(true),
+        onSuccess: () => router.push('/dashboard'),
+        onError: (ctx) => {
+          setLoading(false)
+          setError(ctx.error.message)
+        },
+      },
     })
   }
 
@@ -137,6 +164,7 @@ export default function SignUpForm() {
         label="I want to receive updates via email."
         slotProps={{ typography: { variant: 'body2' } }}
       />
+      {error && <Alert severity="error">{error}</Alert>}
       <Button
         fullWidth
         type="submit"
