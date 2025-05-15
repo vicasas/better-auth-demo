@@ -5,6 +5,7 @@ import NextLink from 'next/link'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import {
+  Alert,
   Box,
   Button,
   IconButton,
@@ -12,10 +13,12 @@ import {
   Link,
   TextField,
 } from '@mui/material'
+import { authClient } from '@/authclient'
 
 export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false)
-  const [loading] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleClickShowPassword = () => {
     setShowPassword((show) => !show)
@@ -26,7 +29,20 @@ export default function SignInForm() {
     const formData = new FormData(event.currentTarget)
     const jsonData = Object.fromEntries(formData.entries())
 
-    console.log(jsonData)
+    const { email, password } = jsonData as { email: string; password: string }
+
+    await authClient.signIn.email({
+      email,
+      password,
+      callbackURL: '/dashboard',
+      fetchOptions: {
+        onRequest: () => setLoading(true),
+        onError: (ctx) => {
+          setLoading(false)
+          setError(ctx.error.message)
+        },
+      },
+    })
   }
 
   return (
@@ -84,6 +100,7 @@ export default function SignInForm() {
           </Link>
         </Box>
       </div>
+      {error && <Alert severity="error">{error}</Alert>}
       <Button
         fullWidth
         type="submit"
